@@ -19,15 +19,15 @@ void setup()  {
 void loop()  {
   //read the input pin
   int buttonState = digitalRead(pushButton);
-  digitalWrite(led, HIGH);
-  delay(1500);
-  digitalWrite(led, LOW);
-  delay(500);
-  Serial.print(buttonState);
-  delay(250);
-  // print out the state of the button
+   // if buttonstate is true/pushed by human the LED with Blink
   Serial.println(buttonState);
-  delay(250); // delay in between readings for stability
+  if (buttonState==HIGH){
+    digitalWrite(led, HIGH);
+    delay(1500);
+    digitalWrite(led, LOW);
+    delay(500);
+  }
+  delay(1); // delay in between readings for stability
 }
 
  
