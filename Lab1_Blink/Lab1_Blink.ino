@@ -9,21 +9,25 @@
 
 // initialize our led to PIN
 int led = 13;
-
-
-
-
-
-
-void setup() {
-  // Using the Function pinMode to call led and provide output
-pinMode(led, OUTPUT);
+int pushButton =2;
+void setup()  {
+   pinMode(led,OUTPUT);
+   Serial.begin(9600);
+   pinMode(pushButton,INPUT);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-digitalWrite(led, HIGH);
-delay(1500);
-digitalWrite(led, LOW );
-delay(500);
+void loop()  {
+  //read the input pin
+  int buttonState = digitalRead(pushButton);
+  digitalWrite(led, HIGH);
+  delay(1500);
+  digitalWrite(led, LOW);
+  delay(500);
+  Serial.print(buttonState);
+  delay(250);
+  // print out the state of the button
+  Serial.println(buttonState);
+  delay(250); // delay in between readings for stability
 }
+
+ 
