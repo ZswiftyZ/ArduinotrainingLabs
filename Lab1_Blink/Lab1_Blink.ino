@@ -6,24 +6,29 @@
 *
 */
 
-// initialize our led to PIN
-int led = 13;
-int pushButton =2;
-void setup()  {
-   // initialize the serial communication at 9600 bits per second
-   Serial.begin(9600);
+const int analogPin =A0;
+const int ledPin =13;
+float threshold = 2.25;
+
+void setup(){
+
+//initialie the LED pin as an output
+pinMode(ledPin,OUTPUT);
+//initialize the serial communication at 9600 bits per second
 }
 
-void loop()  {
-  //read the unput on analog pin 0
-  int potentiometerValue = analogRead(A0);
+void loop(){
+  //read the input on analog pin 0
+  int potentiometerValue = analogRead(analogPin);
+  float voltage = potentiometerValue*(5.0/1023.0);
 
-
-  // print the calue of our potentiometer
-  Serial.println(potentiometerValue);
-
-  //add a delay for stability
-  delay(1);
- 
+  Serial.println(voltage);
+  if(voltage>threshold){
+    digitalWrite(ledPin,HIGH);
+    
+  }
+  else{
+    digitalWrite(ledPin,LOW);
+  }
+delay(1);
 }
- 
